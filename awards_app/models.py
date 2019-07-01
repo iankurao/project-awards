@@ -15,10 +15,11 @@ class Projects(models.Model):
     screen1=models.ImageField(upload_to='screenshot/',blank=True)
     screen2=models.ImageField(upload_to='screenshot/',blank=True)
 
-    def __str__(self):
-        self.name
+    class Meta:
+        ordering=['-name']
 
-    
+    def __str__(self):
+        self.name  
 
     @classmethod
     def search_project(cls,word):
@@ -32,7 +33,9 @@ class Profile(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     phone=models.IntegerField()
 
-   
+    class Meta:
+        ordering=['-profile']
+
 
 class Comments(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
