@@ -137,4 +137,4 @@ def project_detail(request,project_id):
         user_comment=Comments.objects.filter(pro_id=project_id)
     except Exception as e:
         raise Http404()
-    return render(request,'details.html',{'projects':projects,'form':form,'usability':average_usa,'design':average_des,'content':average_con,'average':averageRating,'auth':auth,'all':all,'ave':ave,'review':review,'comments':user_comment})
+    return render(request,'post-details.html',{'projects':projects,'form':form,'usability':average_usa,'design':average_des,'content':average_con,'average':averageRating,'auth':auth,'all':all,'ave':ave,'review':review,'comments':user_comment})
