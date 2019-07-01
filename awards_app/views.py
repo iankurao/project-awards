@@ -3,6 +3,7 @@ from .forms import PostForm,RateForm,ReviewForm,UpdateForm
 from .models import Projects,Rates,Comments,Profile
 from django.http import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
     
@@ -12,6 +13,7 @@ def index(request):
         raise  Http404()
     return render(request,'index.html',{"projects":projects})
 
+@login_required(login_url='/accounts/login/')
 def post(request):
     current_user=request.user
     if request.method=='POST':
@@ -25,7 +27,7 @@ def post(request):
         form=PostForm()
     return render(request,'post.html',{'form':form})
 
-
+@login_required(login_url='/accounts/login/')
 def profile(request):
     current_user=request.user
     try:
