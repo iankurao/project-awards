@@ -43,3 +43,14 @@ def profile(request):
     else:
         form=UpdateForm()
     return render(request,'profile.html', {'form':form,'profile':profis,'projects':user_projects})
+
+def search(request):
+    
+    if 'name' in request.GET and   request.GET['name']:
+        term=request.GET.get('name')
+        results=Projects.search_project(term)
+
+        return render(request,'search.html',{'projects':results})
+    else:
+        message="You havent searched any project"
+        return render(request,'search.html',{'message':message})
