@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Projects
+from .models import Projects,Profile,Comments
 # Create your tests here.
 
 class TestProjects(TestCase):
@@ -17,3 +17,28 @@ class TestProjects(TestCase):
         self.assertEqual(self.new_project.link,"https:project")
         self.assertEqual(self.new_project.screen1,"phoebe")
         self.assertEqual(self.new_project.screen2,"kin")
+
+
+class TestProfile(TestCase):
+    def setUp(self):
+        self.new_profile=Profile(profile='iano',bio='I love code',phone="0723475550")
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.new_profile,Profile))
+
+    def test_initialization(self):
+        self.assertEqual(self.new_profile.profile,'iano')
+        self.assertEqual(self.new_profile.bio,'I love code')
+        self.assertEqual(self.new_profile.phone,"0723475550")  
+
+class TestComments(TestCase):
+    def setUp(self):
+        self.new_comment=Comments(comment="Amazing",pro_id=0)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.new_comment,Comments))
+
+    def test_initialization(self):
+        self.assertEqual(self.new_comment.comment,"Amazing")
+        self.assertEqual(self.new_comment.pro_id,0)
+
