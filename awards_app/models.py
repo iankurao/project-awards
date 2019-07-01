@@ -15,11 +15,24 @@ class Projects(models.Model):
     screen1=models.ImageField(upload_to='screenshot/',blank=True)
     screen2=models.ImageField(upload_to='screenshot/',blank=True)
 
+    def __str__(self):
+        self.name
+
+    
+
+    @classmethod
+    def search_project(cls,word):
+        searched=cls.objects.filter(name__icontains=word)
+        return searched
+
+
 class Profile(models.Model):
     profile=models.ImageField(upload_to='profile/')
     bio=models.CharField(max_length=60)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     phone=models.IntegerField()
+
+   
 
 class Comments(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
